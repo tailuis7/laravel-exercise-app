@@ -16,13 +16,20 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
+	Route::get('/product_detail', function () {
+		return view('layouts/product/product_detail');
+	});
     //    Route::get('/link1', function ()    {
 //        // Uses Auth Middleware
 //    });
 
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
-    Route::get('/product_detail', function () {
-		return view('layouts/product/product_detail');
-	});
+    Route::group(['middleware' => ['admin']], function () {
+  //       Route::get('/product_detail', function () {
+		// 	return view('layouts/product/product_detail');
+		// });
+
+    });
+    
 });

@@ -66,13 +66,13 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
+            'driver' => 'eloquent',//driver : Thiết lập này xác định cách thông tin người dùng được lấy ra và xác thực. Mặc định nó sẽ sử dụng model eloquenttuy nhiên còn một sự lựa chọn khác là databasesẽ khiến Laravel làm việc trực tiếp với cơ sở dữ liệu thay vì làm việc với model. Trừ khi bạn biết chính xác bạn đang làm gì còn không mình khuyên các bạn nên để theo mặc định là eloquent. (Để hiểu rõ hơn về eloquent model bạn có thể xem ở trong bài viết này: http://kungfuphp.com/laravel-framework-5/su-dung-eloquent-trong-laravel-5.html)
+            'model' => App\User::class,//model : Thiết lập này cho Laravel biết model nào được sử dụng để lưu trữ thông tin người dùng theo mặc định thì nó được đặt cho app\User. (Mình sẽ giải thích rõ về model User trong bài viết sau)
         ],
 
         // 'users' => [
         //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'table' => 'users',//table : Thiết lập này xác định bảng nào trong cơ sở dữ liệu được sử dụng để lưu trữ thông tin người dùng. Theo mặc định nó sẽ được đặt cho bảng users.
         // ],
     ],
 
@@ -91,6 +91,7 @@ return [
     |
     */
 
+    //password : Laravel sử dụng một số cơ chế cần thiết để quản lý và xử lý các yêu cầu khôi phục mật khẩu. Thiết lập này xác định view chứa nội dung email được gửi tới người dùng, bảng trong cơ sở dữ liệu được dùng để quản lý yêu cầu khôi phục mật khẩu và thời hạn (tính theo phút) mà yêu cầu khôi phục có hiệu lực.
     'passwords' => [
         'users' => [
             'provider' => 'users',
