@@ -29,7 +29,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * check user is admin by is
+     * check user is admin by id
      * @param id
      * @return boolean
      */
@@ -37,6 +37,21 @@ class User extends Authenticatable
         $roles = UserQ::getRolesUser($id);
         foreach ($roles as $role) {
             if ($role->name == 'admin') {
+                return TRUE;
+            }
+        }
+        return FALSE;
+    }
+
+    /**
+     * check user is member by id
+     * @param id
+     * @return boolean
+     */
+    public static function checkMember($id) {
+        $roles = UserQ::getRolesUser($id);
+        foreach ($roles as $role) {
+            if ($role->name == 'member') {
                 return TRUE;
             }
         }

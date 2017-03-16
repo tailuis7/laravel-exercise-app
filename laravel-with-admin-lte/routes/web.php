@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/product_detail', function () {
 		return view('layouts/product/product_detail');
 	});
+    Route::get('/logout');
     //    Route::get('/link1', function ()    {
 //        // Uses Auth Middleware
 //    });

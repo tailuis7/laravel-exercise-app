@@ -19,11 +19,19 @@ class Admin
     public function handle($request, Closure $next, $guard = null)
     {
         if (!User::checkAdmin(Auth::user()->id)) {
-            if ($request->ajax() || $request->wantsJson()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('login');
+            if (!User::checkMember(Auth::user()->id)) {
+                if ($request->ajax() || $request->wantsJson()) {
+                    return response('Unauthorized.', 401);
+                } else {
+                    return redirect('/product_detail');
+                }
             }
+            return $next($request);
+            // if ($request->ajax() || $request->wantsJson()) {
+            //     return response('Unauthorized.', 401);
+            // } else {
+            //     return redirect()->guest('login');
+            // }
         }
         return $next($request);
     }
