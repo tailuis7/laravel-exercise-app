@@ -11,7 +11,7 @@ class UserGroupsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_groups')->insert([
+        DB::table('users_groups')->insert([
             [
                 'user_id' => '1',
                 'group_id' => '1'

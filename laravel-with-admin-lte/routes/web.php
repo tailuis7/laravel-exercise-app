@@ -11,15 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+
+// Route::get('/home', function () {
+//     echo "sadas";
+// });
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/product_detail', function () {
-		return view('layouts/product/product_detail');
+    Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+	Route::get('/blog_detail', function () {
+		return view('layouts/blog/blog_detail');
 	});
-    Route::get('/logout');
+
     //    Route::get('/link1', function ()    {
 //        // Uses Auth Middleware
 //    });
@@ -27,9 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
     Route::group(['middleware' => ['admin']], function () {
-  //       Route::get('/product_detail', function () {
-		// 	return view('layouts/product/product_detail');
-		// });
+        Route::get('/admin', 'AdminController@admin');
 
     });
     

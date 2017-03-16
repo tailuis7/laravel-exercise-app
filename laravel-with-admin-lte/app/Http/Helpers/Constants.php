@@ -2,12 +2,13 @@
 
 namespace App\Http\Helpers;
 
-class Constans
+class Constants
 {
 	//Tables
 	const USERS = 'users';
 	const GROUPS = 'groups';
-	const USER_GROUPS = 'user_groups';
+	const USERS_GROUPS = 'users_groups';
+	const BLOGS = 'blogs';
 
 	//Roles
 	const ROLE_MEMBER = 'member';

@@ -4,21 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserGroupsTable extends Migration
+class CreateBlogsTable extends Migration
 {
-    /**
+	/**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('users_groups', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned;
-            // $table->foreign('user_id')->referrences('id')->on('users');
-            $table->integer('group_id')->unsigned;
-            // $table->foreign('group_id')->referrences('id')->on('groups');
+            $table->string('title');
+            $table->string('body');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateUserGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_groups');
+        Schema::dropIfExists('blogs');
     }
 }

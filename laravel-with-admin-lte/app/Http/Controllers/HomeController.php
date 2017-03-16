@@ -9,6 +9,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Models\Dal\BlogQ;
 
 /**
  * Class HomeController
@@ -23,7 +25,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
+        // $this->middleware('auth');
     }
 
     /**
@@ -33,6 +35,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('adminlte::home');
+        $checkLogin = FALSE;
+        if (Auth::check()) {
+            // The user is logged in...
+            $checkLogin = TRUE;
+            // echo "OK"; exit();
+
+        }
+        //Get Blogs
+        $blogs = BlogQ::getBlogs();
+        // dd($blogs);
+        return view('layouts/blog/index', compact('checkLogin', 'blogs'));
     }
 }

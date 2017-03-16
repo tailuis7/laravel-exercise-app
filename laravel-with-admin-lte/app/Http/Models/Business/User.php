@@ -3,7 +3,6 @@
 namespace App\Http\Models\Business;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-// use App\Http\Helpers\Constants;
 use App\Http\Helpers\Constants;
 use App\Http\Models\Dal\UserQ;
 
@@ -36,22 +35,7 @@ class User extends Authenticatable
     public static function checkAdmin($id) {
         $roles = UserQ::getRolesUser($id);
         foreach ($roles as $role) {
-            if ($role->name == 'admin') {
-                return TRUE;
-            }
-        }
-        return FALSE;
-    }
-
-    /**
-     * check user is member by id
-     * @param id
-     * @return boolean
-     */
-    public static function checkMember($id) {
-        $roles = UserQ::getRolesUser($id);
-        foreach ($roles as $role) {
-            if ($role->name == 'member') {
+            if ($role->name == Constants::ROLE_ADMIN) {
                 return TRUE;
             }
         }

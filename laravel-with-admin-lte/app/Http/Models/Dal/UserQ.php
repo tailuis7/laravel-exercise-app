@@ -20,7 +20,7 @@ class UserQ
      * @return array role user
      */
     public static function getRolesUser($id) {
-        return DB::table('user_groups' . ' as ug')
+        return DB::table('users_groups' . ' as ug')
                 ->select('name')
                 ->join('groups' . ' as g', 'g.id', '=', 'ug.group_id')
                 ->where('ug.user_id', '=', $id)

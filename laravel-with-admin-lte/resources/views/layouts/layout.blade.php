@@ -16,9 +16,11 @@
         </style>
     </head>
     <body>
+        @include('layouts/templates/header')
     	<div class="container">
     		@yield('content')
     	</div>
         <!-- @yield('footer') -->
+        @include('layouts/templates/footer')
     </body>
 </html>
