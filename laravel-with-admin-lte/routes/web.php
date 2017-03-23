@@ -19,9 +19,10 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-	Route::get('/blog_detail', function () {
-		return view('layouts/blog/blog_detail');
-	});
+	// Route::get('/blog_detail', function () {
+	// 	return view('layouts/blog/blog_detail');
+	// });
+    Route::get('/blog_detail', 'HomeController@showBlogDetail');
 
     //    Route::get('/link1', function ()    {
 //        // Uses Auth Middleware

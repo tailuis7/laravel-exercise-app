@@ -2,7 +2,7 @@
 
 @section('content')
 	
-	<?php if (!$checkLogin) : ?>
+	<?php if (empty($checkLogin)) : ?>
 	<a href="{{ url('/login') }}">Login</a> | <a href="{{ url('/register') }}">Register</a>
 	<?php else : ?>
 	<a href="{{ url('/logout') }}">Logout</a>

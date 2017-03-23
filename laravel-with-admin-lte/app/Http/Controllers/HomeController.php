@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Models\Dal\BlogQ;
 use App\Http\Models\Business\User;
+use Illuminate\Support\Facades\View;
+
 
 /**
  * Class HomeController
@@ -27,6 +29,23 @@ class HomeController extends Controller
     public function __construct()
     {
         // $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            if (Auth::check()) {
+                // The user is logged in...
+                $checkLogin = TRUE;
+                // echo "OK"; exit();
+                View::share('checkLogin', $checkLogin);
+                //Check if user is admin or not
+                if (User::checkAdmin(Auth::user()->id)) {
+                    $checkAdmin = TRUE;
+                    View::share('checkAdmin', $checkAdmin);
+                }
+            }
+            return $next($request);
+        });
+        
+        
+        
     }
 
     /**
@@ -36,21 +55,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $checkLogin = FALSE;
-        $checkAdmin = FALSE;
-        if (Auth::check()) {
-            // The user is logged in...
-            $checkLogin = TRUE;
-            //Check if user is Admin or not
-            if (User::checkAdmin(Auth::user()->id)) {
-                $checkAdmin = TRUE;
-            }
-            // echo "OK"; exit();
-
-        }
         //Get Blogs
         $blogs = BlogQ::getBlogs();
         // dd($blogs);
-        return view('layouts/blog/index', compact('checkLogin', 'checkAdmin', 'blogs'));
+        return view('layouts/blog/index', compact('blogs'));
+    }
+
+    /**
+     * Show blog detail page.
+     *
+     * @return Response
+     */
+    public function showBlogDetail()
+    {
+        return view('layouts/blog/blog_detail');
     }
 }
