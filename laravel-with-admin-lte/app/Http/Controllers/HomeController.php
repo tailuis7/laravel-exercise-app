@@ -11,6 +11,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Models\Dal\BlogQ;
+use App\Http\Models\Business\User;
 
 /**
  * Class HomeController
@@ -36,15 +37,20 @@ class HomeController extends Controller
     public function index()
     {
         $checkLogin = FALSE;
+        $checkAdmin = FALSE;
         if (Auth::check()) {
             // The user is logged in...
             $checkLogin = TRUE;
+            //Check if user is Admin or not
+            if (User::checkAdmin(Auth::user()->id)) {
+                $checkAdmin = TRUE;
+            }
             // echo "OK"; exit();
 
         }
         //Get Blogs
         $blogs = BlogQ::getBlogs();
         // dd($blogs);
-        return view('layouts/blog/index', compact('checkLogin', 'blogs'));
+        return view('layouts/blog/index', compact('checkLogin', 'checkAdmin', 'blogs'));
     }
 }
