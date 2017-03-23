@@ -1,9 +1,7 @@
 @extends('layouts/layout')
 
 @section('content')
-	<?php if ($checkAdmin) : ?>
-	<a href="{{ url('/admin') }}">Go to Admin Page</a>
-	<?php endif; ?>
+	
 	<?php if (!$checkLogin) : ?>
 	<a href="{{ url('/login') }}">Login</a> | <a href="{{ url('/register') }}">Register</a>
 	<?php else : ?>
