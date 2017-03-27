@@ -11,8 +11,10 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Models\Dal\BlogQ;
+use App\Http\Models\Dal\BlogC;
 use App\Http\Models\Business\User;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Input;
 
 
 /**
@@ -69,5 +71,39 @@ class HomeController extends Controller
     public function showBlogDetail()
     {
         return view('layouts/blog/blog_detail');
+    }
+
+    /**
+     * Show the form to create a new blog post.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('layouts/blog/create_blog_form');
+    }
+
+    /**
+     * Store a new blog post.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        // Validate and store the blog post...
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'body' => 'required',
+        ]);
+
+
+        $blog = new BlogC;
+        $title = Input::get('title');
+        $body = Input::get('body');
+        if ($blog->insertBlog($title, $body)) {
+            return redirect('home');
+        }
+        // The blog post is valid, store in database...
     }
 }
