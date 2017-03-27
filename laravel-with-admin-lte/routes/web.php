@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/create', 'HomeController@create');
 
-    Route::post('/create', 'HomeController@store');
+    Route::post('/store', 'HomeController@store');
 
 
     //    Route::get('/link1', function ()    {

@@ -13,7 +13,7 @@
     </div>
 @endif
 
-	<form class="form-horizontal" method="POST">
+	<form class="form-horizontal" method="POST" action="{{ url('/store') }}">
 		{{ csrf_field() }}
 		<div class="form-group">
 		    <label for="inputEmail3" class="col-sm-2 control-label">Title</label>

@@ -98,12 +98,26 @@ class HomeController extends Controller
         ]);
 
 
+        // The blog post is valid, store in database...
+
+        //Get request data
+        $request_data = $_POST;
+
+        //Create needed array to store to DB
+        $blog_content = [
+            'user_id' => 1,
+            'title' => $request_data['title'],
+            'body' => $request_data['body']
+        ];
+        // dd($request_data);
+        // dd($blog_content);
         $blog = new BlogC;
-        $title = Input::get('title');
-        $body = Input::get('body');
-        if ($blog->insertBlog($title, $body)) {
+        // $title = Input::get('title');
+        // $body = Input::get('body');
+        // $blog_content = Input::all();
+        
+        if ($blog->insertBlog($blog_content)) {
             return redirect('home');
         }
-        // The blog post is valid, store in database...
     }
 }

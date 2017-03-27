@@ -12,13 +12,7 @@ class BlogC
      * @param
      * @return
      */
-    public static function insertBlog($title, $body) {
-        return DB::table('blogs')->insert([
-		    [
-		    	'user_id' => 1,
-			    'title' => $title,
-			    'body' => $body
-		    ]
-		]);
+    public static function insertBlog($blog_content) {
+        return DB::table('blogs')->insert([$blog_content]);
     }
 }
