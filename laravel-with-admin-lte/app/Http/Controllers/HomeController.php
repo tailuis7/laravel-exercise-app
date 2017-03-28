@@ -111,12 +111,12 @@ class HomeController extends Controller
         ];
         // dd($request_data);
         // dd($blog_content);
-        $blog = new BlogC;
+        // $blog = new BlogC;
         // $title = Input::get('title');
         // $body = Input::get('body');
         // $blog_content = Input::all();
         
-        if ($blog->insertBlog($blog_content)) {$request->session()->flash('alert-success', 'User was successful added!');
+        if (BlogC::insertBlog($blog_content)) {
             $request->session()->flash('alert-success', 'Blog was successful created!');
             return redirect('home');
         } else {
