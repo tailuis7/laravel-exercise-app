@@ -10,7 +10,15 @@
 	<a href="{{ url('/create') }}">Create Blog</a>
 	<?php endif; ?>
 	<h2>This is Home Page</h2>
+	<div class="flash-message">
+    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+		@if(Session::has('alert-' . $msg))
 
+		<h2 class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		</h2>
+		@endif
+    @endforeach
+  	</div> <!-- end .flash-message -->
 	<h3>Blogs</h3>
 	<hr />
 	@foreach ($blogs as $blog)
